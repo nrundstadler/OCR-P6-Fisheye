@@ -1,0 +1,19 @@
+@use "../utils/variables" as *;
+
+.photographer-card {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__title {
+    color: $color-secondary;
+    font-size: 36px;
+  }
+
+  &__img {
+    height: 200px;
+    width: 200px;
+  }
+}

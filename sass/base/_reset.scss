@@ -1,0 +1,40 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Enable smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Improve text readability and ensure body covers full viewport. */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Enhance text wrapping for paragraphs. */
+p {
+  text-wrap: pretty;
+}

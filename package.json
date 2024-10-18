@@ -1,0 +1,18 @@
+{
+  "name": "ocr-p6-fisheye",
+  "version": "1.0.0",
+  "description": "Créez un site accessible pour une plateforme de photographes",
+  "main": "index.js",
+  "scripts": {
+    "start": "sass --watch ./sass/index.scss:./css/style.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.80.2"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  }
+}
