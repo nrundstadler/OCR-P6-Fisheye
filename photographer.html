@@ -11,12 +11,12 @@
   </head>
   <body>
     <header class="header">
-      <img src="assets/images/logo.png" class="header__logo" alt="fisheye logo" />
+      <a href="index.html">
+        <img src="assets/images/logo.png" class="header__logo" alt="Fisheye, page d'accueil" />
+      </a>
     </header>
     <main class="main">
-      <section class="profile">
-        <button class="btn" onclick="displayModal()">Contactez-moi</button>
-      </section>
+      <section class="profil"></section>
     </main>
     <section id="contactModal">
       <div class="modal">
@@ -33,7 +33,7 @@
         </form>
       </div>
     </section>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
+    <script src="scripts/pages/photographer.js" type="module"></script>
+    <script src="scripts/utils/contactForm.js"></script>
   </body>
 </html>

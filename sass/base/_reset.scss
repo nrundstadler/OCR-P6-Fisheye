@@ -26,14 +26,6 @@ picture {
   display: block;
 }
 
-/* Improve text readability and ensure body covers full viewport. */
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
 /* Enhance text wrapping for paragraphs. */
 p {
   text-wrap: pretty;

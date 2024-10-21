@@ -1,0 +1,49 @@
+@use "../utils/variables" as *;
+
+.profil {
+  background-color: $color-light;
+  min-height: 300px;
+  margin: 0 100px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+
+  padding: 20px 50px;
+
+  &__infos {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+  }
+
+  &__name {
+    font-size: 4rem;
+    color: $color-secondary;
+    margin: 0;
+    line-height: 1;
+  }
+
+  &__city {
+    font-size: 1.5rem;
+    color: $color-primary;
+  }
+
+  &__tag {
+    font-size: 1.13rem;
+    color: $color-dark;
+  }
+
+  &__contact {
+    justify-self: center;
+  }
+
+  &__img {
+    justify-self: end;
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
+  }
+}

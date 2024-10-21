@@ -1,19 +1,8 @@
+import { getData } from "../utils/data.js";
 import { photographerFactory } from "../factories/photographer.js";
 
-async function getData() {
-  const requestURL = "data/photographers.json";
-  try {
-    const response = await fetch(requestURL);
-    const resultatAPI = await response.json();
-    return resultatAPI;
-  } catch (error) {
-    console.log("Erreur getData : " + error);
-    return {};
-  }
-}
-
 function renderPhotographerProfiles(photographers) {
-  const $photographersSection = document.querySelector(".photographer_section");
+  const $photographersSection = document.querySelector(".photographer-section");
 
   if (Array.isArray(photographers) && photographers.length > 0) {
     photographers.forEach(photographer => {

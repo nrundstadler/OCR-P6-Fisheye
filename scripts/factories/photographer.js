@@ -2,6 +2,7 @@ import { createElement } from "../utils/domUtils.js";
 
 export function photographerFactory(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
+  const portraitSrc = `assets/photographers/profil/${portrait}`;
 
   function createPhotographerCardDOM() {
     // Create the article element
@@ -25,7 +26,7 @@ export function photographerFactory(data) {
     const img = createElement("img", {
       classes: ["photographer-card__img"],
       attributes: {
-        src: `assets/photographers/profil/${portrait}`,
+        src: portraitSrc,
         alt: `Portrait du photographe ${name}`,
       },
     });
@@ -73,5 +74,62 @@ export function photographerFactory(data) {
     return article;
   }
 
-  return { createPhotographerCardDOM };
+  function createPhotographerProfileDOM() {
+    // Create the container for the profile infos
+    const profileInfos = createElement("div", {
+      classes: ["profil__infos"],
+    });
+
+    // Create the h1 element for the photographer's name
+    const nameElement = createElement("h1", {
+      classes: ["profil__name"],
+      content: name,
+    });
+
+    // Create the p element for the city and country
+    const cityElement = createElement("p", {
+      classes: ["profil__city"],
+      content: `${city}, ${country}`,
+    });
+
+    // Create the p element for the tagline
+    const taglineElement = createElement("p", {
+      classes: ["profil__tag"],
+      content: tagline,
+    });
+
+    // Append name, city, and tagline to the profile infos container
+    profileInfos.appendChild(nameElement);
+    profileInfos.appendChild(cityElement);
+    profileInfos.appendChild(taglineElement);
+
+    // Create the button for contact
+    const contactButton = createElement("button", {
+      classes: ["btn", "profil__contact"],
+      attributes: {
+        onclick: "displayModal()",
+        "aria-label": "Ouvre la fenêtre de contact",
+      },
+      content: "Contactez-moi",
+    });
+
+    // Create the img element for the photographer's portrait
+    const imgElement = createElement("img", {
+      classes: ["profil__img"],
+      attributes: {
+        src: portraitSrc,
+        alt: `Portrait du photographe ${name}`,
+      },
+    });
+
+    // Create a fragment to return everything together
+    const fragment = document.createDocumentFragment();
+    fragment.appendChild(profileInfos);
+    fragment.appendChild(contactButton);
+    fragment.appendChild(imgElement);
+
+    return fragment;
+  }
+
+  return { createPhotographerCardDOM, createPhotographerProfileDOM };
 }

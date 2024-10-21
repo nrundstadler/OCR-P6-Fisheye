@@ -312,7 +312,7 @@ body {
   font-weight: 400;
   margin: 0;
   max-width: 1440px;
-  min-width: 800px;
+  min-width: 1000px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -355,14 +355,6 @@ picture {
   display: block;
 }
 
-/* Improve text readability and ensure body covers full viewport. */
-body {
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
 /* Enhance text wrapping for paragraphs. */
 p {
   text-wrap: pretty;
@@ -383,7 +375,7 @@ p {
   margin-left: 100px;
 }
 
-.photographer_section {
+.photographer-section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
@@ -452,23 +444,62 @@ p {
   border-radius: 5px;
 }
 
-.profile {
+.profil {
   background-color: #fafafa;
-  height: 300px;
+  min-height: 300px;
   margin: 0 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding: 20px 50px;
+}
+.profil__infos {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.profil__name {
+  font-size: 4rem;
+  color: #d3573c;
+  margin: 0;
+  line-height: 1;
+}
+.profil__city {
+  font-size: 1.5rem;
+  color: #901c1c;
+}
+.profil__tag {
+  font-size: 1.13rem;
+  color: #525252;
+}
+.profil__contact {
+  justify-self: center;
+}
+.profil__img {
+  justify-self: end;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
 }
 
 .btn {
-  font-size: 0.62rem;
+  background-color: #901c1c;
+  font-size: 1.25rem;
   font-weight: 700;
   color: white;
-  padding: 11px;
-  width: 170px;
+  padding: 5px;
+  min-width: 170px;
   height: 70px;
   border: none;
-  background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+}
+.btn:hover, .btn:focus {
+  color: #000000;
+  background-color: #d3573c;
+  transition-duration: 0.3s;
 }
 
 .photographer-card {
@@ -492,10 +523,12 @@ p {
   width: 200px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2);
 }
 .photographer-card__infos {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 .photographer-card__city {
   font-size: 0.9rem;

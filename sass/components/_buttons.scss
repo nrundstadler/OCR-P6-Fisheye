@@ -1,14 +1,21 @@
 @use "../utils/variables" as *;
 
 .btn {
-  font-size: 0.62rem;
+  background-color: $color-primary;
+  font-size: 1.25rem;
   font-weight: $fw-bold;
   color: white;
-  padding: 11px;
-  width: 170px;
+  padding: 5px;
+  min-width: 170px;
   height: 70px;
   border: none;
-  background-color: $color-primary;
   border-radius: 5px;
   cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: $color-black;
+    background-color: $color-secondary;
+    transition-duration: 0.3s;
+  }
 }
