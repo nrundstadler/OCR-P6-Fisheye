@@ -1,9 +1,15 @@
+@use "../utils/variables" as *;
+
 .header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 90px;
+  height: 100px;
+
+  &__title {
+    color: $color-primary;
+  }
 
   &__logo {
     height: 50px;

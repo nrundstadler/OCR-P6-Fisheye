@@ -1,19 +1,46 @@
 @use "../utils/variables" as *;
 
 .photographer-card {
-  justify-self: center;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
+  text-align: center;
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
 
   &__title {
     color: $color-secondary;
-    font-size: 36px;
+    font-weight: $fw-normal;
   }
 
   &__img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  &__infos {
+    text-align: center;
+  }
+
+  &__city {
+    font-size: 0.9rem;
+    color: $color-primary;
+  }
+
+  &__tag {
+    font-size: 0.75rem;
+  }
+
+  &__price {
+    font-size: 0.65rem;
+    color: $color-dark;
   }
 }
