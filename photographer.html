@@ -15,9 +15,46 @@
         <img src="assets/images/logo.png" class="header__logo" alt="Fisheye, page d'accueil" />
       </a>
     </header>
+
     <main class="main">
       <section class="profil"></section>
+
+      <section class="galery-section">
+        <article class="galery-card" data-id="623534343">
+          <img
+            class="galery-card__img"
+            src="assets/photographers/media/Mimi/Travel_Lonesome.jpg"
+            alt="photographie nommée Lonesome"
+          />
+          <div class="galery-card__details">
+            <h2 class="galery-card__title">Lonesome</h2>
+            <div class="galery-card__like">
+              <p class="galery-card__like-score">88</p>
+              <button class="galery-card__like-btn" aria-label="Aimer cette photo">
+                <span class="sr-only">J'aime</span>
+              </button>
+            </div>
+          </div>
+        </article>
+        <article class="galery-card" data-id="623534343">
+          <img
+            class="galery-card__img"
+            src="assets/photographers/media/Mimi/Travel_Lonesome.jpg"
+            alt="photographie nommée Lonesome"
+          />
+          <div class="galery-card__details">
+            <h2 class="galery-card__title">Lonesome</h2>
+            <div class="galery-card__like">
+              <p class="galery-card__like-score">88</p>
+              <button class="galery-card__like-btn" aria-label="Aimer cette photo">
+                <span class="sr-only">J'aime</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </section>
     </main>
+
     <section id="contactModal">
       <div class="modal">
         <header class="modal__header">
@@ -33,6 +70,7 @@
         </form>
       </div>
     </section>
+
     <script src="scripts/pages/photographer.js" type="module"></script>
     <script src="scripts/utils/contactForm.js"></script>
   </body>

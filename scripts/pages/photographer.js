@@ -13,6 +13,7 @@ async function init() {
   // Search Photographer
   const selectedPhotographer = photographers.find(photographer => photographer.id === photographerId);
 
+  // DOM Photographer Profil
   const photographerModel = photographerFactory(selectedPhotographer);
   const photographerProfilDOM = photographerModel.createPhotographerProfileDOM();
   $profilSection.appendChild(photographerProfilDOM);
