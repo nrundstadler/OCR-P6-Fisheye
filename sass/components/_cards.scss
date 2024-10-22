@@ -48,7 +48,9 @@
 }
 
 .galery-card {
+  &__video,
   &__img {
+    width: 100%;
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
@@ -56,7 +58,7 @@
 
   &__details {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
     padding: 10px 0;
   }
