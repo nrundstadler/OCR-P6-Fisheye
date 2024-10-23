@@ -14,7 +14,6 @@ export function trapFocus(element) {
 
   function handleKeyDown(e) {
     if (e.key === "Tab") {
-      // If Shift + Tab is pressed
       if (e.shiftKey) {
         if (document.activeElement === firstFocusableElement) {
           e.preventDefault();

@@ -1,6 +1,6 @@
 import { createElement } from "../utils/domUtils.js";
 
-export function mediaFactory(data, photographerName) {
+export function mediaFactory(data, photographerName = "") {
   const { id, title, image, video, likes } = data;
 
   // Function to generate the correct media path based on photographerName
@@ -10,28 +10,37 @@ export function mediaFactory(data, photographerName) {
   }
 
   // Function to create an image DOM
-  function createImgDom() {
+  function createImgDom(classCSSName = "galery-card__media", tabindex = 0) {
     return createElement("img", {
-      classes: ["galery-card__img"],
+      classes: [classCSSName],
       attributes: {
         src: getMediaPath(),
         alt: `Photographie nommée ${title}`,
-        tabindex: 0,
+        tabindex: String(tabindex),
       },
     });
   }
 
   // Function to create a video DOM
-  function createVideoDom() {
+  function createVideoDom(classCSSName = "galery-card__media", tabindex = 0, autoplay = false, loop = false) {
     // Create the <video> element without controls, autoplay, or muted
     const videoElement = createElement("video", {
-      classes: ["galery-card__video"],
+      classes: [classCSSName],
       attributes: {
         "aria-label": `Vidéo nommée ${title}`,
-        tabindex: 0,
+        tabindex: String(tabindex),
       },
     });
 
+    // Ajouter l'attribut autoplay si true
+    if (autoplay) {
+      videoElement.setAttribute("autoplay", "");
+    }
+
+    // Ajouter l'attribut loop si true
+    if (loop) {
+      videoElement.setAttribute("loop", "");
+    }
     // Create the <source> element for the video
     const sourceElement = createElement("source", {
       attributes: {
@@ -115,5 +124,6 @@ export function mediaFactory(data, photographerName) {
 
     return galleryCard;
   }
-  return { createMediaCardDOM };
+
+  return { data, createMediaCardDOM, createImgDom, createVideoDom };
 }

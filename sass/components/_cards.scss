@@ -48,12 +48,15 @@
 }
 
 .galery-card {
-  &__video,
-  &__img {
+  &__media {
     width: 100%;
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &__details {

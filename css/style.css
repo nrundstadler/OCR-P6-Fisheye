@@ -523,6 +523,93 @@ p {
   row-gap: 30px;
 }
 
+.lightbox-modal {
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  background-color: rgba(196, 196, 196, 0.5);
+  border: none;
+}
+.lightbox-modal--is-open {
+  display: flex;
+}
+
+.lightbox {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 80%;
+  height: 80%;
+  border-radius: 5px;
+}
+.lightbox button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  background-size: 35px;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 39px;
+  height: 39px;
+}
+.lightbox__header {
+  height: 62px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+  padding: 15px 15px 0 0;
+  flex-shrink: 0;
+}
+.lightbox__close {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 42 42' fill='none'%3E%3Cpath d='M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z' fill='%23901c1c'/%3E%3C/svg%3E");
+}
+.lightbox__prev, .lightbox__next {
+  background-image: url('data:image/svg+xml,<svg width="42" height="42" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.360108 5.64L18.6801 24L0.360107 42.36L6.00011 48L30.0001 24L6.00011 3.88195e-06L0.360108 5.64Z" fill="%23911C1C"/></svg>');
+}
+.lightbox__next {
+  margin-right: 15px;
+}
+.lightbox__prev {
+  margin-left: 15px;
+  transform: scale(-1, -1);
+}
+.lightbox__main {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  justify-content: space-between;
+  height: 100%;
+}
+.lightbox__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.lightbox__media {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.lightbox__footer {
+  height: 62px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+.lightbox__title {
+  font-size: 1.5rem;
+  color: #901c1c;
+}
+
 .btn {
   background-color: #901c1c;
   font-size: 1.25rem;
@@ -581,11 +668,14 @@ p {
   color: #525252;
 }
 
-.galery-card__video, .galery-card__img {
+.galery-card__media {
   width: 100%;
   height: 300px;
   object-fit: cover;
   border-radius: 5px;
+}
+.galery-card__media:hover {
+  cursor: pointer;
 }
 .galery-card__details {
   display: flex;

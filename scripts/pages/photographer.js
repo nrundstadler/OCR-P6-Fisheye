@@ -2,6 +2,7 @@ import { getData } from "../utils/data.js";
 import { photographerFactory } from "../factories/photographer.js";
 import { mediaFactory } from "../factories/media.js";
 import { initModalContact } from "../utils/contactForm.js";
+import { initModalLightBox } from "../utils/modalLightBox.js";
 
 async function init() {
   const $profilSection = document.querySelector(".profil");
@@ -42,6 +43,8 @@ async function init() {
           $galerySection.appendChild(mediaCardDOM);
         }
       });
+
+      initModalLightBox(media, photographerName);
     }
   } catch (error) {
     console.error(error.message);

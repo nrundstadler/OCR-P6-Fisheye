@@ -57,6 +57,23 @@
       </div>
     </section>
 
+    <dialog id="lightbox-modal" class="lightbox-modal" aria-hidden="true">
+      <div class="lightbox">
+        <header class="lightbox__header">
+          <button class="lightbox__close" aria-label="Fermer la fenêtre"></button>
+        </header>
+
+        <main class="lightbox__main" aria-labelledby="lightbox-sr-title">
+          <p id="lightbox-sr-title" class="sr-only"></p>
+          <button class="lightbox__prev" aria-label="Média précédent"></button>
+          <div class="lightbox__content"></div>
+          <button class="lightbox__next" aria-label="Média suivant"></button>
+        </main>
+
+        <footer class="lightbox__footer"><p class="lightbox__title"></p></footer>
+      </div>
+    </dialog>
+
     <script src="scripts/pages/photographer.js" type="module"></script>
   </body>
 </html>
