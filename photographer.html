@@ -10,45 +10,47 @@
     <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header class="header">
-      <a href="index.html">
-        <img src="assets/images/logo.png" class="header__logo" alt="Fisheye, page d'accueil" />
-      </a>
-    </header>
+    <div class="main-wrapper" aria-hidden="false">
+      <header class="header">
+        <a href="index.html">
+          <img src="assets/images/logo.png" class="header__logo" alt="Fisheye, page d'accueil" />
+        </a>
+      </header>
 
-    <main class="main">
-      <section class="profil"></section>
+      <main class="main">
+        <section class="profil"></section>
+        <section class="galery-section"></section>
+      </main>
+    </div>
 
-      <section class="galery-section">
-        <!-- <article class="galery-card" data-id="623534343">
-          <img
-            class="galery-card__img"
-            src="assets/photographers/media/Mimi/Travel_Lonesome.jpg"
-            alt="photographie nommée Lonesome"
-          />
-          <div class="galery-card__details">
-            <h2 class="galery-card__title">Lonesome</h2>
-            <div class="galery-card__like">
-              <p class="galery-card__like-score">88</p>
-              <button class="galery-card__like-btn" aria-label="Aimer cette photo">
-                <span class="sr-only">J'aime</span>
-              </button>
-            </div>
-          </div>
-        </article> -->
-      </section>
-    </main>
-
-    <section id="contactModal">
+    <section
+      id="contact-modal"
+      class="contact-modal"
+      role="dialog"
+      aria-labelledby="modalContactTitle"
+      aria-hidden="true"
+    >
       <div class="modal">
-        <header class="modal__header">
-          <h2 class="modal__title">Contactez-moi</h2>
-          <img class="modal__close-btn" src="assets/icons/close.svg" onclick="closeModal()" />
+        <header class="modal__header" aria-label="En-tête du formulaire">
+          <h2 class="modal__title" id="modalContactTitle">Contactez-moi</h2>
+          <button class="modal__close-btn" aria-label="Fermer le formulaire"></button>
         </header>
-        <form class="form">
+        <form class="form" id="formContact">
           <div class="form__group">
-            <label class="form__label">Prénom</label>
-            <input class="form__input" />
+            <label class="form__label" for="firstname">Prénom</label>
+            <input class="form__input" id="firstname" type="text" minlength="2" required />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="lastname">Nom</label>
+            <input class="form__input" id="lastname" type="text" minlength="2" required />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="email">Email</label>
+            <input class="form__input" id="email" type="email" minlength="6" required />
+          </div>
+          <div class="form__group">
+            <label class="form__label" for="message">Votre message</label>
+            <textarea class="form__textarea" id="message" required></textarea>
           </div>
           <button class="form__submit-btn btn">Envoyer</button>
         </form>
@@ -56,6 +58,5 @@
     </section>
 
     <script src="scripts/pages/photographer.js" type="module"></script>
-    <script src="scripts/utils/contactForm.js"></script>
   </body>
 </html>

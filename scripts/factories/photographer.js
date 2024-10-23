@@ -131,5 +131,9 @@ export function photographerFactory(data) {
     return fragment;
   }
 
-  return { createPhotographerCardDOM, createPhotographerProfileDOM };
+  function getName() {
+    return name;
+  }
+
+  return { createPhotographerCardDOM, createPhotographerProfileDOM, getName };
 }

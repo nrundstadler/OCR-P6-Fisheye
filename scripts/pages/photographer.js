@@ -1,6 +1,7 @@
 import { getData } from "../utils/data.js";
 import { photographerFactory } from "../factories/photographer.js";
 import { mediaFactory } from "../factories/media.js";
+import { initModalContact } from "../utils/contactForm.js";
 
 async function init() {
   const $profilSection = document.querySelector(".profil");
@@ -24,15 +25,19 @@ async function init() {
 
     // DOM Photographer Profil
     const photographerModel = photographerFactory(selectedPhotographer);
+    const photographerName = photographerModel.getName();
     const photographerProfilDOM = photographerModel.createPhotographerProfileDOM();
     $profilSection.appendChild(photographerProfilDOM);
+
+    // Prepare the contact modal and add the event listeners
+    initModalContact(photographerName);
 
     if (Array.isArray(media) && media.length > 0) {
       // Loop the media
       media.forEach(mediaItem => {
         // Check media that matches the photographer's ID
         if (mediaItem.photographerId === photographerId) {
-          const mediaModel = mediaFactory(mediaItem, selectedPhotographer.name);
+          const mediaModel = mediaFactory(mediaItem, photographerName);
           const mediaCardDOM = mediaModel.createMediaCardDOM();
           $galerySection.appendChild(mediaCardDOM);
         }
