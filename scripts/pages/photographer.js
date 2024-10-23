@@ -2,7 +2,7 @@ import { getData } from "../utils/data.js";
 import { photographerFactory } from "../factories/photographer.js";
 import { mediaFactory } from "../factories/media.js";
 import { initModalContact } from "../utils/contactForm.js";
-import { initModalLightBox } from "../utils/modalLightBox.js";
+import { initModalLightBox } from "../utils/modalLightbox.js";
 
 async function init() {
   const $profilSection = document.querySelector(".profil");
@@ -44,7 +44,7 @@ async function init() {
         }
       });
 
-      initModalLightBox(media, photographerName);
+      initModalLightBox(media, photographerName, photographerId);
     }
   } catch (error) {
     console.error(error.message);

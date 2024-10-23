@@ -1,7 +1,7 @@
 import { trapFocus } from "./trapFocus.js";
 import { mediaFactory } from "../factories/media.js";
 
-export function initModalLightBox(photographerMedia, photographerName) {
+export function initModalLightBox(photographerMedia, photographerName, photographerId) {
   let modalIsOpen = false;
   let releaseFocusTrap = null; // Variable to store the function to release the focus trap
 
@@ -22,7 +22,11 @@ export function initModalLightBox(photographerMedia, photographerName) {
 
     const mediaId = $mediaParentElement.getAttribute("data-id");
 
-    const selectedMedia = photographerMedia.find(photographerMedia => photographerMedia.id === parseInt(mediaId));
+    console.log(photographerMedia);
+
+    const selectedMedia = photographerMedia.find(photographerMedia => {
+      return photographerMedia.id === parseInt(mediaId) && photographerMedia.photographerId === photographerId;
+    });
 
     if (!selectedMedia) {
       throw new Error("Media with the specified ID not found");
