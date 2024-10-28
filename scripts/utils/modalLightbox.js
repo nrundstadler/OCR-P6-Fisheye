@@ -1,7 +1,7 @@
 import { trapFocus } from "./trapFocus.js";
 import { mediaFactory } from "../factories/media.js";
 
-export function initModalLightBox(photographerMedia, photographerName, photographerId) {
+export function initModalLightBox(photographerMedia, photographerName) {
   let modalIsOpen = false;
   let releaseFocusTrap = null; // Variable to store the function to release the focus trap
 
@@ -13,24 +13,50 @@ export function initModalLightBox(photographerMedia, photographerName, photograp
   const $nextBtn = document.querySelector(".lightbox__next");
   const $mediaElements = document.querySelectorAll(".galery-card__media");
 
-  function initModal(mediaEvent) {
-    const $mediaParentElement = mediaEvent.target.closest("[data-id]");
+  // Variable to track the current index
+  let currentMediaIndex = 0;
 
-    if (!$mediaParentElement) {
-      throw new Error("Parent element with data-id not found");
+  function goToNextMedia() {
+    currentMediaIndex = currentMediaIndex + 1;
+    if (currentMediaIndex > photographerMedia.length - 1) currentMediaIndex = 0;
+    initModal();
+  }
+
+  function goToPrevMedia() {
+    currentMediaIndex = currentMediaIndex - 1;
+    if (currentMediaIndex < 0) currentMediaIndex = photographerMedia.length - 1;
+    initModal();
+  }
+
+  function handleMediaEvent(mediaEvent) {
+    if (mediaEvent.type === "click" || (mediaEvent.type === "keydown" && mediaEvent.key === "Enter")) {
+      mediaEvent.preventDefault();
+      try {
+        const $mediaParentElement = mediaEvent.target.closest("[data-id]");
+
+        if (!$mediaParentElement) {
+          throw new Error("Parent element with data-id not found");
+        }
+
+        const mediaId = $mediaParentElement.getAttribute("data-id");
+
+        // Find the index of the media that matches mediaId
+        currentMediaIndex = photographerMedia.findIndex(media => media.id === parseInt(mediaId));
+
+        if (currentMediaIndex !== -1) {
+          initModal();
+          openModal();
+        } else {
+          throw new Error("Media with the specified ID not found");
+        }
+      } catch (error) {
+        console.error("An error occurred in handleMediaEvent:", error.message);
+      }
     }
+  }
 
-    const mediaId = $mediaParentElement.getAttribute("data-id");
-
-    console.log(photographerMedia);
-
-    const selectedMedia = photographerMedia.find(photographerMedia => {
-      return photographerMedia.id === parseInt(mediaId) && photographerMedia.photographerId === photographerId;
-    });
-
-    if (!selectedMedia) {
-      throw new Error("Media with the specified ID not found");
-    }
+  function initModal() {
+    const selectedMedia = photographerMedia[currentMediaIndex];
 
     const mediaModel = mediaFactory(selectedMedia, photographerName);
 
@@ -45,6 +71,16 @@ export function initModalLightBox(photographerMedia, photographerName, photograp
     document.querySelector(".lightbox__content").replaceChildren(mediaElement);
   }
 
+  function handleKeyboardNavigation(event) {
+    if (event.key === "ArrowRight") {
+      goToNextMedia();
+    } else if (event.key === "ArrowLeft") {
+      goToPrevMedia();
+    } else if (event.key === "Escape" && modalIsOpen) {
+      closeModal();
+    }
+  }
+
   function openModal() {
     modalIsOpen = true;
     $body.classList.add("no-scroll");
@@ -53,6 +89,12 @@ export function initModalLightBox(photographerMedia, photographerName, photograp
     $mainWrapper.setAttribute("aria-hidden", "true");
     $modalLightbox.setAttribute("aria-hidden", "false");
     $modalLightbox.setAttribute("aria-modal", "true");
+
+    $prevBtn.addEventListener("click", goToPrevMedia);
+    $nextBtn.addEventListener("click", goToNextMedia);
+
+    // Add keyboard navigation for escape and left / right arrow keys
+    document.addEventListener("keydown", handleKeyboardNavigation);
 
     // Enable focus trap
     releaseFocusTrap = trapFocus($modalLightbox);
@@ -67,6 +109,9 @@ export function initModalLightBox(photographerMedia, photographerName, photograp
     $modalLightbox.setAttribute("aria-hidden", "true");
     $modalLightbox.setAttribute("aria-modal", "false");
 
+    // Remove keyboard navigation for escape and left / right arrow keys
+    document.removeEventListener("keydown", handleKeyboardNavigation);
+
     // Disable focus trap
     if (releaseFocusTrap) {
       releaseFocusTrap();
@@ -75,21 +120,9 @@ export function initModalLightBox(photographerMedia, photographerName, photograp
   }
 
   $mediaElements.forEach(media => {
-    media.addEventListener("click", e => {
-      try {
-        initModal(e);
-        openModal();
-      } catch (error) {
-        console.error("An error occurred in initModal:", error.message);
-      }
-    });
+    media.addEventListener("click", handleMediaEvent);
+    media.addEventListener("keydown", handleMediaEvent);
   });
 
   $closeBtn.addEventListener("click", closeModal);
-
-  document.addEventListener("keydown", event => {
-    if (event.key === "Escape" && modalIsOpen) {
-      closeModal();
-    }
-  });
 }

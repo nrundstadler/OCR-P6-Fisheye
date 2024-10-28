@@ -107,7 +107,6 @@ export function photographerFactory(data) {
     const contactButton = createElement("button", {
       classes: ["btn", "profil__contact"],
       attributes: {
-        onclick: "displayModal()",
         "aria-label": "Ouvre la fenêtre de contact",
       },
       content: "Contactez-moi",

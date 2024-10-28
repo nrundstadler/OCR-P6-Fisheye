@@ -33,18 +33,19 @@ async function init() {
     // Prepare the contact modal and add the event listeners
     initModalContact(photographerName);
 
-    if (Array.isArray(media) && media.length > 0) {
-      // Loop the media
-      media.forEach(mediaItem => {
-        // Check media that matches the photographer's ID
-        if (mediaItem.photographerId === photographerId) {
-          const mediaModel = mediaFactory(mediaItem, photographerName);
-          const mediaCardDOM = mediaModel.createMediaCardDOM();
-          $galerySection.appendChild(mediaCardDOM);
-        }
+    // Filter media by photographerId
+    const photographerMedia = media.filter(mediaItem => mediaItem.photographerId === photographerId);
+
+    if (photographerMedia.length > 0) {
+      // Loop the filtered media
+      photographerMedia.forEach(mediaItem => {
+        const mediaModel = mediaFactory(mediaItem, photographerName);
+        const mediaCardDOM = mediaModel.createMediaCardDOM();
+        $galerySection.appendChild(mediaCardDOM);
       });
 
-      initModalLightBox(media, photographerName, photographerId);
+      // Pass only the filtered media to initModalLightBox
+      initModalLightBox(photographerMedia, photographerName);
     }
   } catch (error) {
     console.error(error.message);
