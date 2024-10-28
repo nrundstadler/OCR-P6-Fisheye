@@ -2,6 +2,7 @@ import { createElement } from "../utils/domUtils.js";
 
 export function mediaFactory(data, photographerName = "") {
   const { id, title, image, video, likes } = data;
+  let liked = false;
 
   // Function to generate the correct media path based on photographerName
   function getMediaPath() {
@@ -125,5 +126,36 @@ export function mediaFactory(data, photographerName = "") {
     return galleryCard;
   }
 
-  return { data, createMediaCardDOM, createImgDom, createVideoDom };
+  function toggleLike() {
+    // Toggle the like status
+    liked = !liked;
+
+    // Select the like score element in the DOM and update it
+    const $galleryCard = document.querySelector(`[data-id="${id}"]`);
+
+    const $likeScoreElement = $galleryCard.querySelector(".galery-card__like-score");
+    const $likeBtnElement = $galleryCard.querySelector(".galery-card__like-btn");
+    const $likeBtnTextElement = $likeBtnElement.querySelector(".sr-only");
+
+    if ($likeScoreElement) {
+      const currentLikes = parseInt($likeScoreElement.textContent);
+      $likeScoreElement.textContent = liked ? currentLikes + 1 : currentLikes - 1;
+    }
+
+    $likeBtnElement.classList.toggle("galery-card__like-btn--liked", liked);
+
+    $likeBtnTextElement.textContent = !liked ? "J'aime" : "Je n'aime plus";
+
+    return liked;
+  }
+
+  function getTitle() {
+    return title;
+  }
+
+  function getImage() {
+    return image;
+  }
+
+  return { createMediaCardDOM, createImgDom, createVideoDom, getImage, getTitle, toggleLike };
 }

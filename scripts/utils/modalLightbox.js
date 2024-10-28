@@ -60,12 +60,12 @@ export function initModalLightBox(photographerMedia, photographerName) {
 
     const mediaModel = mediaFactory(selectedMedia, photographerName);
 
-    document.querySelector(".lightbox__title").textContent = mediaModel.data.title;
+    document.querySelector(".lightbox__title").textContent = mediaModel.getTitle();
 
-    const srTitle = `Visualisation de ${mediaModel.data.image ? "l'image" : "la vidéo"} agrandie`;
+    const srTitle = `Visualisation de ${mediaModel.getImage() ? "l'image" : "la vidéo"} agrandie`;
     document.getElementById("lightbox-sr-title").textContent = srTitle;
 
-    const mediaElement = mediaModel.data.image
+    const mediaElement = mediaModel.getImage()
       ? mediaModel.createImgDom("lightbox__media", -1)
       : mediaModel.createVideoDom("lightbox__media", -1, true, true);
     document.querySelector(".lightbox__content").replaceChildren(mediaElement);

@@ -1,4 +1,5 @@
 @use "../utils/variables" as *;
+@use "../utils/icons" as *;
 
 .contact-modal {
   display: none;
@@ -37,10 +38,8 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2242%22 height=%2242%22 viewBox=%220 0 42 42%22 fill=%22none%22%3E%3Cpath d=%22M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z%22 fill=%22white%22/%3E%3C/svg%3E");
+    @include close-icon($color-white);
     background-size: 42px;
-    background-repeat: no-repeat;
-    background-position: center;
     width: 46px;
     height: 46px;
   }

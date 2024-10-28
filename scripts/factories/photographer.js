@@ -134,5 +134,9 @@ export function photographerFactory(data) {
     return name;
   }
 
-  return { createPhotographerCardDOM, createPhotographerProfileDOM, getName };
+  function getPrice() {
+    return price;
+  }
+
+  return { createPhotographerCardDOM, createPhotographerProfileDOM, getName, getPrice };
 }
