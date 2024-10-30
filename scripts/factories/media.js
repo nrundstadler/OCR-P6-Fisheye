@@ -1,7 +1,8 @@
 import { createElement } from "../utils/domUtils.js";
 
 export function mediaFactory(data, photographerName = "") {
-  const { id, title, image, video, likes } = data;
+  const { id, title, image, video, date } = data;
+  let likes = data.likes;
   let liked = false;
 
   // Function to generate the correct media path based on photographerName
@@ -100,7 +101,7 @@ export function mediaFactory(data, photographerName = "") {
 
     // Create the like button <button>
     const likeButton = createElement("button", {
-      classes: ["galery-card__like-btn"],
+      classes: liked ? ["galery-card__like-btn", "galery-card__like-btn--liked"] : ["galery-card__like-btn"],
       attributes: {
         "aria-label": "Aimer cette photo",
       },
@@ -127,6 +128,9 @@ export function mediaFactory(data, photographerName = "") {
   }
 
   function toggleLike() {
+    // add or remove like to media
+    liked ? likes-- : likes++;
+
     // Toggle the like status
     liked = !liked;
 
@@ -149,13 +153,25 @@ export function mediaFactory(data, photographerName = "") {
     return liked;
   }
 
-  function getTitle() {
-    return title;
+  function getId() {
+    return id;
+  }
+
+  function getDate() {
+    return date;
   }
 
   function getImage() {
     return image;
   }
 
-  return { createMediaCardDOM, createImgDom, createVideoDom, getImage, getTitle, toggleLike };
+  function getTitle() {
+    return title;
+  }
+
+  function getLikes() {
+    return likes;
+  }
+
+  return { createMediaCardDOM, createImgDom, createVideoDom, getId, getDate, getLikes, getImage, getTitle, toggleLike };
 }

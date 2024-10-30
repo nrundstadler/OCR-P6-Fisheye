@@ -19,6 +19,33 @@
 
       <main class="main">
         <section class="profil"></section>
+
+        <div class="sortby">
+          <label id="sortbyLabel" class="sortby__label">Trier par :</label>
+          <div class="sortby__wraper">
+            <button
+              id="sortbyTrigger"
+              class="sortby__trigger"
+              role="button"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-labelledby="sortbyLabel"
+            >
+              Popularité <i class="sortby__chevron sortby__chevron--down"></i>
+            </button>
+            <div
+              class="sortby__menu"
+              role="listbox"
+              aria-labelledby="sortbyLabel"
+              aria-activedescendant="option-popularity"
+            >
+              <button class="sortby__item" role="option" id="optionPopularity" aria-selected="true">Popularité</button>
+              <button class="sortby__item" role="option" id="optionDate" aria-selected="false">Date</button>
+              <button class="sortby__item" role="option" id="optionTitle" aria-selected="false">Titre</button>
+            </div>
+          </div>
+        </div>
+
         <section class="galery-section"></section>
         <section class="stats">
           <div class="stats__likes">

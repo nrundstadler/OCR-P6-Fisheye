@@ -23,3 +23,11 @@
   background-size: contain;
   background-repeat: no-repeat;
 }
+
+@mixin chevron-up-icon($color: #000000) {
+  $color-hex: string.slice("#{$color}", 2);
+
+  background-image: url("data:image/svg+xml,<svg width='16' height='11' viewBox='0 0 16 11' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.88 10.5466L8 4.43996L14.12 10.5466L16 8.66663L8 0.66663L1.64355e-07 8.66663L1.88 10.5466Z' fill='%23#{$color-hex}'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+}

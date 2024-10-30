@@ -475,6 +475,90 @@ p {
   margin-top: 15px;
 }
 
+.sortby {
+  position: relative;
+  margin: 20px 100px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.13rem;
+}
+.sortby__wraper {
+  width: 180px;
+}
+.sortby button {
+  position: relative;
+  padding: 20px;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background-color: #901c1c;
+  color: #ffffff;
+  font-weight: 700;
+  width: 100%;
+  text-align: left;
+}
+.sortby button[aria-selected=true] {
+  display: none;
+}
+.sortby button:focus, .sortby button:hover {
+  background-color: #d3573c;
+  color: #000000;
+}
+.sortby__label {
+  font-weight: 700;
+}
+.sortby__trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 5px 5px 0 0;
+}
+.sortby__trigger[aria-expanded=false] {
+  border-radius: 5px 5px 5px 5px;
+}
+.sortby__trigger[aria-expanded=false] .sortby__chevron {
+  transform: none;
+}
+.sortby__chevron {
+  display: block;
+  width: 16px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,<svg width='16' height='11' viewBox='0 0 16 11' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.88 10.5466L8 4.43996L14.12 10.5466L16 8.66663L8 0.66663L1.64355e-07 8.66663L1.88 10.5466Z' fill='%23ffffff'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: scale(-1, -1);
+}
+.sortby button:focus .sortby__chevron,
+.sortby button:hover .sortby__chevron {
+  background-image: url("data:image/svg+xml,<svg width='16' height='11' viewBox='0 0 16 11' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1.88 10.5466L8 4.43996L14.12 10.5466L16 8.66663L8 0.66663L1.64355e-07 8.66663L1.88 10.5466Z' fill='%23000000'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.sortby__menu {
+  display: none;
+  position: absolute;
+  width: 180px;
+  background-color: #901c1c;
+  z-index: 10;
+  border-radius: 0 0 5px 5px;
+}
+.sortby__menu--open {
+  display: block;
+}
+.sortby__item::before {
+  content: "";
+  top: 0px;
+  left: 10px;
+  position: absolute;
+  background-color: #ffffff;
+  height: 1px;
+  width: 88%;
+}
+.sortby__item:last-child {
+  border-radius: 0 0 5px 5px;
+}
+
 .profil {
   background-color: #fafafa;
   min-height: 300px;
@@ -552,7 +636,7 @@ p {
   background-color: transparent;
   border: none;
   cursor: pointer;
-  background-size: 35px;
+  background-size: 39px;
   width: 39px;
   height: 39px;
 }

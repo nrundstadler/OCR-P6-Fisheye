@@ -1,4 +1,109 @@
 @use "../utils/variables" as *;
+@use "../utils/icons" as *;
+
+.sortby {
+  position: relative;
+  margin: 20px 100px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  font-size: 1.13rem;
+
+  &__wraper {
+    width: 180px;
+  }
+
+  button {
+    position: relative;
+    padding: 20px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+
+    background-color: $color-primary;
+    color: $color-white;
+    font-weight: $fw-bold;
+    width: 100%;
+
+    text-align: left;
+
+    &[aria-selected="true"] {
+      display: none;
+    }
+
+    &:focus,
+    &:hover {
+      background-color: $color-secondary;
+      color: $color-black;
+    }
+  }
+
+  &__label {
+    font-weight: $fw-bold;
+  }
+
+  &__trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    border-radius: 5px 5px 0 0;
+
+    &[aria-expanded="false"] {
+      border-radius: 5px 5px 5px 5px;
+
+      .sortby__chevron {
+        transform: none;
+      }
+    }
+  }
+
+  &__chevron {
+    display: block;
+    width: 16px;
+    height: 12px;
+    @include chevron-up-icon($color-white);
+    transform: scale(-1, -1);
+  }
+
+  button:focus,
+  button:hover {
+    .sortby__chevron {
+      @include chevron-up-icon($color-black);
+    }
+  }
+
+  &__menu {
+    display: none;
+    position: absolute;
+    width: 180px;
+    background-color: $color-primary;
+    z-index: 10;
+    border-radius: 0 0 5px 5px;
+
+    &--open {
+      display: block;
+    }
+  }
+
+  &__item {
+    &::before {
+      content: "";
+      top: 0px;
+      left: 10px;
+      position: absolute;
+      background-color: $color-white;
+      height: 1px;
+      width: 88%;
+    }
+
+    &:last-child {
+      border-radius: 0 0 5px 5px;
+    }
+  }
+}
 
 .profil {
   background-color: $color-light;

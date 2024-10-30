@@ -1,7 +1,7 @@
 import { trapFocus } from "./trapFocus.js";
 import { mediaFactory } from "../factories/media.js";
 
-export function initModalLightBox(photographerMedia, photographerName) {
+export function initModalLightBox(arrayMediaModel) {
   let modalIsOpen = false;
   let releaseFocusTrap = null; // Variable to store the function to release the focus trap
 
@@ -18,13 +18,13 @@ export function initModalLightBox(photographerMedia, photographerName) {
 
   function goToNextMedia() {
     currentMediaIndex = currentMediaIndex + 1;
-    if (currentMediaIndex > photographerMedia.length - 1) currentMediaIndex = 0;
+    if (currentMediaIndex > arrayMediaModel.length - 1) currentMediaIndex = 0;
     initModal();
   }
 
   function goToPrevMedia() {
     currentMediaIndex = currentMediaIndex - 1;
-    if (currentMediaIndex < 0) currentMediaIndex = photographerMedia.length - 1;
+    if (currentMediaIndex < 0) currentMediaIndex = arrayMediaModel.length - 1;
     initModal();
   }
 
@@ -40,8 +40,8 @@ export function initModalLightBox(photographerMedia, photographerName) {
 
         const mediaId = $mediaParentElement.getAttribute("data-id");
 
-        // Find the index of the media that matches mediaId
-        currentMediaIndex = photographerMedia.findIndex(media => media.id === parseInt(mediaId));
+        // Find the index of the media in mediaArray that matches mediaId
+        currentMediaIndex = arrayMediaModel.findIndex(media => media.getId() === parseInt(mediaId));
 
         if (currentMediaIndex !== -1) {
           initModal();
@@ -56,25 +56,25 @@ export function initModalLightBox(photographerMedia, photographerName) {
   }
 
   function initModal() {
-    const selectedMedia = photographerMedia[currentMediaIndex];
+    const selectedMedia = arrayMediaModel[currentMediaIndex];
 
-    const mediaModel = mediaFactory(selectedMedia, photographerName);
+    document.querySelector(".lightbox__title").textContent = selectedMedia.getTitle();
 
-    document.querySelector(".lightbox__title").textContent = mediaModel.getTitle();
-
-    const srTitle = `Visualisation de ${mediaModel.getImage() ? "l'image" : "la vidéo"} agrandie`;
+    const srTitle = `Visualisation de ${selectedMedia.getImage() ? "l'image" : "la vidéo"} agrandie`;
     document.getElementById("lightbox-sr-title").textContent = srTitle;
 
-    const mediaElement = mediaModel.getImage()
-      ? mediaModel.createImgDom("lightbox__media", -1)
-      : mediaModel.createVideoDom("lightbox__media", -1, true, true);
+    const mediaElement = selectedMedia.getImage()
+      ? selectedMedia.createImgDom("lightbox__media", -1)
+      : selectedMedia.createVideoDom("lightbox__media", -1, true, true);
     document.querySelector(".lightbox__content").replaceChildren(mediaElement);
   }
 
   function handleKeyboardNavigation(event) {
     if (event.key === "ArrowRight") {
+      $nextBtn.focus();
       goToNextMedia();
     } else if (event.key === "ArrowLeft") {
+      $prevBtn.focus();
       goToPrevMedia();
     } else if (event.key === "Escape" && modalIsOpen) {
       closeModal();
