@@ -29,7 +29,7 @@ export function initSortbyMenu(onSortChange) {
   // Sets the selected option and updates the button label
   function selectOption() {
     const selectedOption = $options[activeIndex];
-    $triggerButton.innerHTML = `${selectedOption.textContent} <i class="sortby__chevron"></i>`;
+    $triggerButton.innerHTML = `${selectedOption.textContent} <span aria-hidden="true" class="sortby__chevron"></span>`;
     updateActiveOption();
     toggleMenu();
 
