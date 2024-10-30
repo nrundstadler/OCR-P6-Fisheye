@@ -4,12 +4,16 @@
   "description": "Créez un site accessible pour une plateforme de photographes",
   "main": "index.js",
   "scripts": {
-    "start": "sass --watch ./sass/index.scss:./css/style.css"
+    "start": "sass --watch ./sass/index.scss:./css/style.css",
+    "lint": "eslint \"scripts/**/*.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0",
     "sass": "^1.80.2"
   },
   "dependencies": {

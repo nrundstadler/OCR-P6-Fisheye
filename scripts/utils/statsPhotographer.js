@@ -17,7 +17,7 @@ export function initStatsPhotographer(totalLikes, price, collectionMediaModel) {
       const mediaContainer = event.target.closest("[data-id]");
       const mediaId = mediaContainer.getAttribute("data-id");
 
-      if (collectionMediaModel.hasOwnProperty(mediaId)) {
+      if (Object.prototype.hasOwnProperty.call(collectionMediaModel, mediaId)) {
         const liked = collectionMediaModel[mediaId].toggleLike();
         liked ? totalLikes++ : totalLikes--;
         updateTotalLike();

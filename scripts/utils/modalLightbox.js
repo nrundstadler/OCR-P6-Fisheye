@@ -1,5 +1,4 @@
 import { trapFocus } from "./trapFocus.js";
-import { mediaFactory } from "../factories/media.js";
 
 export function initModalLightBox(arrayMediaModel) {
   let modalIsOpen = false;
