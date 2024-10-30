@@ -99,6 +99,15 @@ export function mediaFactory(data, photographerName = "") {
       content: likes,
     });
 
+    // Create the <span> element for "likes" text, hidden for screen readers
+    const srOnlyTextLikes = createElement("span", {
+      classes: ["sr-only"],
+      content: " likes",
+    });
+
+    // Append the <span> to the likeScore <p> element
+    likeScore.appendChild(srOnlyTextLikes);
+
     // Create the like button <button>
     const likeButton = createElement("button", {
       classes: liked ? ["galery-card__like-btn", "galery-card__like-btn--liked"] : ["galery-card__like-btn"],

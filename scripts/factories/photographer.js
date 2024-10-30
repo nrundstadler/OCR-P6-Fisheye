@@ -18,7 +18,7 @@ export function photographerFactory(data) {
       classes: ["photographer-card__link"],
       attributes: {
         href: `./photographer.html?id=${id}`,
-        "aria-label": `Lien vers la page du photographe ${name}`,
+        "aria-label": `Voir la page du photographe ${name}`,
       },
     });
 
