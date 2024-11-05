@@ -34,15 +34,12 @@ export function mediaFactory(data, photographerName = "") {
       },
     });
 
-    // Ajouter l'attribut autoplay si true
-    if (autoplay) {
-      videoElement.setAttribute("autoplay", "");
-    }
+    // Add the autoplay attribute if the autoplay parameter is set to true
+    if (autoplay) videoElement.setAttribute("autoplay", "");
 
-    // Ajouter l'attribut loop si true
-    if (loop) {
-      videoElement.setAttribute("loop", "");
-    }
+    // Add the loop attribute if the loop parameter is set to true
+    if (loop) videoElement.setAttribute("loop", "");
+
     // Create the <source> element for the video
     const sourceElement = createElement("source", {
       attributes: {

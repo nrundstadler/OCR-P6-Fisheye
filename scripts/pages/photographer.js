@@ -29,21 +29,25 @@ async function init() {
     // Step 5: Filter and render media gallery for the selected photographer
     const photographerMedia = filterMediaByPhotographer(media, photographerId);
     const collectionMediaModel = createMediaCollection(photographerMedia, photographerName); // Create a collection of media instances
-    const sortedArrayMedia = sortMedia(collectionMediaModel, "optionPopularity");
-    renderMediaGallery(sortedArrayMedia);
+    const sortedArrayMediaModel = sortMedia(collectionMediaModel, "optionPopularity");
+    renderMediaGallery(sortedArrayMediaModel);
 
     // Step 6: Initialize statistics block and add like listeners
-    initStatsPhotographer(calculateTotalLikes(sortedArrayMedia), photographerModel.getPrice(), collectionMediaModel);
+    initStatsPhotographer(
+      calculateTotalLikes(sortedArrayMediaModel),
+      photographerModel.getPrice(),
+      collectionMediaModel
+    );
 
     // Step 7: Initialize lightbox functionality
-    initModalLightBox(sortedArrayMedia);
+    initModalLightBox(sortedArrayMediaModel);
 
     // Use a callback to update the media gallery and reset the lightbox
     // whenever a new sorting option is selected from the sort menu
     initSortbyMenu(sortCriterion => {
-      const sortedArrayMedia = sortMedia(collectionMediaModel, sortCriterion);
-      renderMediaGallery(sortedArrayMedia);
-      initModalLightBox(sortedArrayMedia);
+      const sortedArrayMediaModel = sortMedia(collectionMediaModel, sortCriterion);
+      renderMediaGallery(sortedArrayMediaModel);
+      initModalLightBox(sortedArrayMediaModel);
     });
   } catch (error) {
     console.error(error.message);
@@ -75,21 +79,21 @@ function createMediaCollection(mediaItems, photographerName) {
   return collectionMediaModel;
 }
 
-function renderMediaGallery(sortedArrayMedia) {
+function renderMediaGallery(sortedArrayMediaModel) {
   const $gallerySection = document.querySelector(".galery-section");
   $gallerySection.innerHTML = "";
 
-  sortedArrayMedia.forEach(mediaInstance => {
+  sortedArrayMediaModel.forEach(mediaInstance => {
     const mediaCardDOM = mediaInstance.createMediaCardDOM();
     $gallerySection.appendChild(mediaCardDOM);
   });
 }
 
-function calculateTotalLikes(sortedArrayMedia) {
-  return sortedArrayMedia.reduce((total, mediaModelItem) => total + mediaModelItem.getLikes(), 0);
+function calculateTotalLikes(sortedArrayMediaModel) {
+  return sortedArrayMediaModel.reduce((total, mediaModelItem) => total + mediaModelItem.getLikes(), 0);
 }
 
-// Function to sort media based on the selected criterion
+// Sorts a collection of media model by the given criterion and returns a sorted array of media model
 function sortMedia(collectionMediaModel, criterion) {
   const mediaArray = Object.values(collectionMediaModel);
 

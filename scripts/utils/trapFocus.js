@@ -13,14 +13,16 @@ export function trapFocus(element) {
   const lastFocusableElement = focusableElements[focusableElements.length - 1];
 
   function handleKeyDown(e) {
+    // Check if the Tab key was pressed
     if (e.key === "Tab") {
+      // If Shift + Tab is pressed, move focus to the last element when on the first
       if (e.shiftKey) {
         if (document.activeElement === firstFocusableElement) {
           e.preventDefault();
           lastFocusableElement.focus();
         }
       }
-      // If Tab is pressed
+      // If only Tab is pressed, move focus to the first element when on the last
       else {
         if (document.activeElement === lastFocusableElement) {
           e.preventDefault();
@@ -35,6 +37,7 @@ export function trapFocus(element) {
   // Set initial focus on the first focusable element
   firstFocusableElement.focus();
 
+  // Return a function to remove the keydown event listener
   return () => {
     element.removeEventListener("keydown", handleKeyDown);
   };

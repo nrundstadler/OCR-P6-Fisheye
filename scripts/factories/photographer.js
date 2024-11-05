@@ -4,6 +4,7 @@ export function photographerFactory(data) {
   const { name, id, city, country, tagline, price, portrait } = data;
   const portraitSrc = `assets/photographers/profil/${portrait}`;
 
+  // Function to create and return a DOM structure for the photographer's card
   function createPhotographerCardDOM() {
     // Create the article element
     const article = createElement("article", {
@@ -13,7 +14,7 @@ export function photographerFactory(data) {
       },
     });
 
-    // Create the link element
+    // Create a link to the photographer's profile page
     const link = createElement("a", {
       classes: ["photographer-card__link"],
       attributes: {
@@ -22,7 +23,7 @@ export function photographerFactory(data) {
       },
     });
 
-    // Create the img element
+    // Create an img element for the photographer's portrait
     const img = createElement("img", {
       classes: ["photographer-card__img"],
       attributes: {
@@ -31,7 +32,7 @@ export function photographerFactory(data) {
       },
     });
 
-    // Create the h2 element
+    // Create a heading (h2) with the photographer's name
     const h2 = createElement("h2", {
       classes: ["photographer-card__title"],
       content: name,
@@ -41,7 +42,7 @@ export function photographerFactory(data) {
     link.appendChild(img);
     link.appendChild(h2);
 
-    // Create the div photographer-card__infos
+    // Create a container for additional photographer details
     const cardInfos = createElement("div", {
       classes: ["photographer-card__infos"],
     });
@@ -51,12 +52,10 @@ export function photographerFactory(data) {
       classes: ["photographer-card__city"],
       content: `${city}, ${country}`,
     });
-
     const taglineInfo = createElement("p", {
       classes: ["photographer-card__tag"],
       content: tagline,
     });
-
     const priceInfo = createElement("p", {
       classes: ["photographer-card__price"],
       content: `${price}€/jour`,
